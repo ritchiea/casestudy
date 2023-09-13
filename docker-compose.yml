@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  pg:
+    container_name: postgres
+    image: postgres:15
+    user: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
