@@ -1,6 +1,14 @@
 import { Line } from "react-chartjs-2";
+import type { ChartData } from "chart.js";
+import { FC } from "react";
 
-function LineChart({ chartData, title, heading }) {
+interface LineChartProps {
+  title: string;
+  heading: string;
+  chartData: ChartData<"line">;
+}
+
+const LineChart: FC<LineChartProps> = ({ chartData, title, heading }) => {
   return (
     <div style={{ width: "33%" }} className="chart-container">
       <h2 style={{ textAlign: "center" }}>{heading}</h2>
@@ -20,5 +28,5 @@ function LineChart({ chartData, title, heading }) {
       />
     </div>
   );
-}
+};
 export default LineChart;
