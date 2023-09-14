@@ -17,7 +17,7 @@ export default async function LandingPage() {
   ));
   return (
     <>
-      <h1>Patients</h1>
+      <h1 className="page-heading">Patients by Client ID</h1>
       <ul>{listItems}</ul>
     </>
   );
