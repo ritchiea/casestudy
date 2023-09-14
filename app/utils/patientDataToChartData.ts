@@ -10,7 +10,7 @@ export const BIOMARKERS = [
   "total_protein",
 ];
 
-type BiomarkerName =
+export type BiomarkerName =
   | "creatine"
   | "chloride"
   | "fasting_glucose"

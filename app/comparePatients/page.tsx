@@ -4,7 +4,10 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { useState, useEffect } from "react";
 import LineChart from "@/app/components/LineChart";
-import { patientDataToChartData } from "@/app/utils/patientDataToChartData";
+import {
+  patientDataToChartData,
+  BiomarkerName,
+} from "@/app/utils/patientDataToChartData";
 import { useSearchParams } from "next/navigation";
 
 interface ChartData {
@@ -46,13 +49,12 @@ export default function Page() {
           patientDataToChartData(pData.test_results)
         );
         const data = patients.map((p, i) => ({
-          data: p[biomarker].data,
+          data: p[biomarker as BiomarkerName].data,
           id: i,
           label: `patient ${p.clientId}`,
         }));
-        // @ts-ignore
         setData(data);
-        setUnit(patients[0][biomarker].unit);
+        setUnit(patients[0][biomarker as BiomarkerName].unit);
         const max = getMax(data);
         const a: string[] = [];
         for (let i = 1; i <= max; i++) {
