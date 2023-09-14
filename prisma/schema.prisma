@@ -10,7 +10,7 @@ datasource db {
   url      = "postgres://postgres:postgres@localhost:5432/casestudy" // env("DATABASE_URL") fails to load, will hard code for the sake of time
 }
 
-model Client {
+model Patient {
   id    Int     @id @default(autoincrement())
   createdAt DateTime @default(now())
   clientId String @unique
@@ -23,9 +23,9 @@ model Client {
 model TestResult {
   id    Int     @id @default(autoincrement())
   createdAt DateTime @default(now())
-  client Client @relation(fields: [clientId], references: [clientId])
+  patient Patient @relation(fields: [patientId], references: [clientId])
   date_testing DateTime
-  clientId String
+  patientId String
   creatine Float
   creatine_unit String
   chloride Float

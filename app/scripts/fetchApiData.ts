@@ -1,15 +1,36 @@
-import { PrismaClient, TestResult } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+
+interface APIData {
+  client_id: string;
+  date_birthdate: string;
+  date_testing: string;
+  gender: number;
+  ethnicity: number;
+  creatine: number;
+  creatine_unit: string;
+  chloride: number;
+  chloride_unit: string;
+  fasting_glucose: number;
+  fasting_glucose_unit: string;
+  potassium: number;
+  potassium_unit: string;
+  sodium: number;
+  sodium_unit: string;
+  total_calcium: number;
+  total_calcium_unit: string;
+  total_protein: number;
+  total_protein_unit: string;
+}
 
 const prisma = new PrismaClient();
 
 async function main() {
   try {
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 1; i <= 10; i++) {
       console.log("getting data from API");
       const data = await fetch("https://mockapi-furw4tenlq-ez.a.run.app/data");
-      const json = await data.json();
-      console.log(json);
-      const client = await prisma.client.create({
+      const json: APIData[] = await data.json();
+      const patient = await prisma.patient.create({
         data: {
           clientId: json[0].client_id,
           birthdate: new Date(json[0].date_birthdate).toISOString(),
@@ -17,11 +38,11 @@ async function main() {
           ethnicity: json[0].ethnicity,
         },
       });
-      console.log(client);
-      json.forEach(async (element: any) => {
+      console.log(patient);
+      json.forEach(async (element: APIData) => {
         const testResult = await prisma.testResult.create({
           data: {
-            clientId: element.client_id,
+            patientId: element.client_id,
             date_testing: new Date(element.date_testing).toISOString(),
             creatine: element.creatine,
             creatine_unit: element.creatine_unit,
