@@ -15,5 +15,10 @@ export default async function LandingPage() {
       <Link href={`/patients/${patient.clientId}`}>{patient.clientId}</Link>
     </li>
   ));
-  return <ul>{listItems}</ul>;
+  return (
+    <>
+      <h1>Patients</h1>
+      <ul>{listItems}</ul>
+    </>
+  );
 }
