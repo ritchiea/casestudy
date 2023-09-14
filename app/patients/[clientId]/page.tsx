@@ -4,11 +4,12 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import LineChart from "../../components/LineChart";
+import LineChart from "@/app/components/LineChart";
 import {
   patientDataToChartData,
   AllChartData,
-} from "../../utils/patientDataToChartData";
+} from "@/app/utils/patientDataToChartData";
+import { isEmpty } from "@/app/utils/isEmpty";
 
 Chart.register(CategoryScale);
 
@@ -24,10 +25,10 @@ export default function Page() {
       .then((data) => {
         setData(patientDataToChartData(data.test_results)), setLoading(false);
       });
-  }, [data]);
+  }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  // if (!data.data) return <p>No patient data</p>;
+  if (isEmpty(data)) return <p>No patient data</p>;
 
   return (
     <>
