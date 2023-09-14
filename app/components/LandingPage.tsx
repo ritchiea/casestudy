@@ -1,21 +1,19 @@
-import { Prisma } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
+import Link from "next/link";
 
 async function getPatients() {
-    const res = await fetch('http://localhost:3000/api/patients')
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch data')
-    }
-   
-    return res.json()
-  }
+  const prisma = new PrismaClient();
+  const patients = await prisma.patient.findMany();
+
+  return patients;
+}
 
 export default async function LandingPage() {
-    const patients = await getPatients()
-    const listItems = patients.map((patient: Prisma.PatientSelect) =>
-            <li>
-                {patient.clientId}
-            </li>
-        )
-    return <ul>{listItems}</ul>
+  const patients = await getPatients();
+  const listItems = patients.map((patient) => (
+    <li>
+      <Link href={`/patients/${patient.clientId}`}>{patient.clientId}</Link>
+    </li>
+  ));
+  return <ul>{listItems}</ul>;
 }
