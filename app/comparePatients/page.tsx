@@ -42,6 +42,7 @@ export default function Page() {
     const fetches = clientIds.map((clientId) =>
       fetch(`/api/patients/${clientId}`)
     );
+    // TODO: simplify with a backend query for different clientIds
     Promise.all(fetches)
       .then((values) => Promise.all(values.map((res) => res.json())))
       .then((values) => {
