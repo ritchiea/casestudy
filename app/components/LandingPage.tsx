@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
+import CompareForm from "./CompareForm";
 
 async function getPatients() {
   const prisma = new PrismaClient();
@@ -15,10 +16,18 @@ export default async function LandingPage() {
       <Link href={`/patients/${patient.clientId}`}>{patient.clientId}</Link>
     </li>
   ));
+
+  const options = patients.map((patient) => (
+    <option value={patient.clientId}>{patient.clientId}</option>
+  ));
   return (
-    <>
-      <h1 className="page-heading">Patients by Client ID</h1>
-      <ul>{listItems}</ul>
-    </>
+    <div className="landing-super-container">
+      <div className="landing-container">
+        <h1 className="page-heading">Patients by Client ID</h1>
+        <ul>{listItems}</ul>
+      </div>
+
+      <CompareForm options={options} />
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-const BIOMARKERS = [
+export const BIOMARKERS = [
   "creatine",
   "chloride",
   "fasting_glucose",

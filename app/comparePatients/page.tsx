@@ -5,7 +5,7 @@ import { CategoryScale } from "chart.js";
 import { useState, useEffect } from "react";
 import LineChart from "@/app/components/LineChart";
 import { patientDataToChartData } from "@/app/utils/patientDataToChartData";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 interface ChartData {
   id: number;
@@ -15,10 +15,24 @@ interface ChartData {
 
 Chart.register(CategoryScale);
 
+const getMax = (data: ChartData[]) => {
+  let max: number = 0;
+
+  data.forEach((d) => {
+    if (d.data.length > max) {
+      max = d.data.length;
+    }
+  });
+  return max;
+};
+
 export default function Page() {
-  //const params = useParams();
-  const clientIds = ["e21f304d", "207b9763"];
+  const params = useSearchParams();
+  const clientIds = params.getAll("patients");
+  const biomarker = params.get("biomarker");
   const [data, setData] = useState([] as ChartData[]);
+  const [unit, setUnit] = useState("");
+  const [labels, setLabels] = useState([] as string[]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,11 +46,19 @@ export default function Page() {
           patientDataToChartData(pData.test_results)
         );
         const data = patients.map((p, i) => ({
-          data: p.creatine.data,
+          data: p[biomarker].data,
           id: i,
           label: `patient ${p.clientId}`,
         }));
+        // @ts-ignore
         setData(data);
+        setUnit(patients[0][biomarker].unit);
+        const max = getMax(data);
+        const a: string[] = [];
+        for (let i = 1; i <= max; i++) {
+          a.push(`t${i}`);
+        }
+        setLabels(a);
         setLoading(false);
       });
   }, []);
@@ -49,23 +71,11 @@ export default function Page() {
       <h1 className="page-heading">Compare Patients</h1>
       <LineChart
         chartData={{
-          labels: [
-            "t1",
-            "t2",
-            "t3",
-            "t4",
-            "t5",
-            "t6",
-            "t7",
-            "t8",
-            "t9",
-            "t10",
-            "t11",
-          ],
+          labels: labels,
           datasets: data,
         }}
-        title="mgdl"
-        heading="Comparing Creatine"
+        title={unit}
+        heading={`Comparing ${biomarker}`}
       />
     </div>
   );
