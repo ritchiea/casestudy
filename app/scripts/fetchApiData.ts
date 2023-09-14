@@ -42,7 +42,7 @@ async function main() {
       json.forEach(async (element: APIData) => {
         const testResult = await prisma.testResult.create({
           data: {
-            patientId: element.client_id,
+            clientId: element.client_id,
             date_testing: new Date(element.date_testing).toISOString(),
             creatine: element.creatine,
             creatine_unit: element.creatine_unit,
