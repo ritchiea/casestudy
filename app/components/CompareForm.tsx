@@ -11,14 +11,14 @@ const CompareForm: FC<CompareFormProps> = ({ options }) => {
   ));
   return (
     <div className="form-container">
-      <h1>Compare Patients</h1>
+      <h1>Compare Patients (select multiple)</h1>
       <form action="/comparePatients" method="GET">
         <select className="patient-select rounded" name="patients" multiple>
           {options}
         </select>
         <label>
           <h2>Biomarker</h2>
-          <select name="biomarker" className="rounded">
+          <select name="biomarker" className="biomarker">
             {biomarkers}
           </select>
         </label>

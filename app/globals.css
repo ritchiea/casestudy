@@ -72,15 +72,13 @@ h1, h2 {
   margin-left: 10%;
 }
 
-.landing-container {
-}
-
 .form-container {
   margin-top: 2%;
 }
 
 form .patient-select {
-  min-height: 35vh;
+  min-height: 16em;
+  min-width: 8em;
 }
 
 form button {
@@ -94,4 +92,9 @@ label {
 
 select {
   display: block;
+}
+
+select.biomarker {
+  padding: .5em;
+  border-radius: 1em;
 }
