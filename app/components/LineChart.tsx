@@ -10,8 +10,8 @@ interface LineChartProps {
 
 const LineChart: FC<LineChartProps> = ({ chartData, title, heading }) => {
   return (
-    <div style={{ width: "33%" }} className="chart-container">
-      <h2 style={{ textAlign: "center" }}>{heading}</h2>
+    <div className="chart-container">
+      <h2 className="chart-heading">{heading}</h2>
       <Line
         data={chartData}
         options={{

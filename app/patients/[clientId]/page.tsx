@@ -31,8 +31,8 @@ export default function Page() {
   if (isEmpty(data)) return <p>No patient data</p>;
 
   return (
-    <>
-      <h1>Patient {clientId}</h1>
+    <div className="patient-page-container">
+      <h1 className="page-heading">Patient {clientId}</h1>
       <LineChart
         chartData={{
           labels: data.creatine.labels,
@@ -89,6 +89,6 @@ export default function Page() {
         title={data.total_protein.unit}
         heading="Total Protein"
       />
-    </>
+    </div>
   );
 }
