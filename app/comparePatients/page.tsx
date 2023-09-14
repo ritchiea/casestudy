@@ -25,7 +25,6 @@ export default function Page() {
     const fetches = clientIds.map((clientId) =>
       fetch(`/api/patients/${clientId}`)
     );
-    console.log(fetches);
     Promise.all(fetches)
       .then((values) => Promise.all(values.map((res) => res.json())))
       .then((values) => {
@@ -65,8 +64,8 @@ export default function Page() {
           ],
           datasets: data,
         }}
-        title="unit"
-        heading="Comparing"
+        title="mgdl"
+        heading="Comparing Creatine"
       />
     </div>
   );
