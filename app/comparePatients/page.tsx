@@ -5,15 +5,20 @@ import { CategoryScale } from "chart.js";
 import { useState, useEffect } from "react";
 import LineChart from "@/app/components/LineChart";
 import { patientDataToChartData } from "@/app/utils/patientDataToChartData";
-import { isEmpty } from "@/app/utils/isEmpty";
 import { useParams } from "next/navigation";
+
+interface ChartData {
+  id: number;
+  label: string;
+  data: number[];
+}
 
 Chart.register(CategoryScale);
 
 export default function Page() {
   //const params = useParams();
   const clientIds = ["e21f304d", "207b9763"];
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([] as ChartData[]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,16 +29,14 @@ export default function Page() {
     Promise.all(fetches)
       .then((values) => Promise.all(values.map((res) => res.json())))
       .then((values) => {
-        console.log(values);
         const patients = values.map((pData) =>
           patientDataToChartData(pData.test_results)
         );
         const data = patients.map((p, i) => ({
           data: p.creatine.data,
-          id: i + 1,
-          label: `patient ${i}`,
+          id: i,
+          label: `patient ${p.clientId}`,
         }));
-        console.log(data);
         setData(data);
         setLoading(false);
       });

@@ -33,6 +33,7 @@ export interface AllChartData {
   sodium: ChartData;
   total_calcium: ChartData;
   total_protein: ChartData;
+  clientId: any;
 }
 
 export const patientDataToChartData = (
@@ -50,6 +51,7 @@ export const patientDataToChartData = (
     data.labels = patientData.map((elem) => elem.date_testing.split("T")[0]);
     result[marker as BiomarkerName] = data;
   });
+  result.clientId = patientData[0].clientId;
 
   return result;
 };
