@@ -8,7 +8,7 @@ import {
   patientDataToChartData,
   BiomarkerName,
 } from "@/app/utils/patientDataToChartData";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, redirect } from "next/navigation";
 
 interface ChartData {
   id: number;
@@ -32,6 +32,9 @@ const getMax = (data: ChartData[]) => {
 export default function Page() {
   const params = useSearchParams();
   const clientIds = params.getAll("patients");
+  if (!clientIds.length) {
+    redirect("/");
+  }
   const biomarker = params.get("biomarker");
   const [data, setData] = useState([] as ChartData[]);
   const [unit, setUnit] = useState("");
