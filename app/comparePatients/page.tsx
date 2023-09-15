@@ -70,7 +70,7 @@ export default function Page() {
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (data.length == 0) return <p>No patient data</p>;
+  if (!data.length) return <p>No patient data</p>;
 
   return (
     <div className="compare-patient-page-container">
