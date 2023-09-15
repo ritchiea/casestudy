@@ -87,7 +87,8 @@ form button {
 }
 
 label {
-  display: block;
+  display: inline;
+  margin-left: 1em;
 }
 
 select {
@@ -97,4 +98,8 @@ select {
 select.biomarker {
   padding: .5em;
   border-radius: 1em;
+}
+
+fieldset div {
+  margin-bottom: .5em;
 }

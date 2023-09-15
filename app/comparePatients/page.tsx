@@ -78,7 +78,9 @@ export default function Page() {
           datasets: data,
         }}
         title={unit}
-        heading={`Comparing ${biomarker}`}
+        heading={`Comparing ${biomarker?.charAt(0).toUpperCase()}${biomarker
+          ?.slice(1)
+          .replace("_", " ")}`}
       />
     </div>
   );

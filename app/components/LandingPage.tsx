@@ -11,22 +11,16 @@ async function getPatients() {
 
 export default async function LandingPage() {
   const patients = await getPatients();
-  const listItems = patients.map((patient) => (
-    <li>
-      <Link href={`/patients/${patient.clientId}`}>{patient.clientId}</Link>
-    </li>
-  ));
-
   const options = patients.map((patient) => (
-    <option value={patient.clientId}>{patient.clientId}</option>
+    <div>
+      <input type="checkbox" name="patients" value={patient.clientId} />
+      <label htmlFor={patient.clientId}>
+        <Link href={`/patients/${patient.clientId}`}>{patient.clientId}</Link>
+      </label>
+    </div>
   ));
   return (
     <div className="landing-super-container">
-      <div className="landing-container">
-        <h1 className="page-heading">Patients by Client ID</h1>
-        <ul>{listItems}</ul>
-      </div>
-
       <CompareForm options={options} />
     </div>
   );
