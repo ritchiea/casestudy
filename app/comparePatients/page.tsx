@@ -16,6 +16,7 @@ interface ChartData {
   data: number[];
 }
 
+// TODO: switch to time axis
 Chart.register(CategoryScale);
 
 const getMax = (data: ChartData[]) => {
