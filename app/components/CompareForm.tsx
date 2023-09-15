@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { BIOMARKERS } from "../utils/patientDataToChartData";
+import { BIOMARKERS } from "@/app/utils/patientDataToChartData";
 
 interface CompareFormProps {
   options: ReactElement[];
