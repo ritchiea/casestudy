@@ -51,7 +51,7 @@ export const patientDataToChartData = (
     data.labels = patientData.map((elem) => elem.date_testing.split("T")[0]);
     result[marker as BiomarkerName] = data;
   });
-  result.clientId = patientData[0].clientId;
+  result.clientId = patientData[0].client_id;
 
   return result;
 };

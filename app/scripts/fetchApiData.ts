@@ -32,17 +32,16 @@ async function main() {
       const json: APIData[] = await data.json();
       const patient = await prisma.patient.create({
         data: {
-          clientId: json[0].client_id,
+          client_id: json[0].client_id,
           birthdate: new Date(json[0].date_birthdate).toISOString(),
           gender: json[0].gender,
           ethnicity: json[0].ethnicity,
         },
       });
-      console.log(patient);
       json.forEach(async (element: APIData) => {
         const testResult = await prisma.testResult.create({
           data: {
-            clientId: element.client_id,
+            client_id: element.client_id,
             date_testing: new Date(element.date_testing).toISOString(),
             creatine: element.creatine,
             creatine_unit: element.creatine_unit,
@@ -60,7 +59,6 @@ async function main() {
             total_protein_unit: element.total_protein_unit,
           },
         });
-        console.log(testResult);
       });
     }
   } catch (e) {
@@ -71,6 +69,7 @@ async function main() {
 main()
   .then(async () => {
     await prisma.$disconnect();
+    console.log("Done fetching!");
   })
 
   .catch(async (e) => {

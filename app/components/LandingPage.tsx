@@ -13,9 +13,9 @@ export default async function LandingPage() {
   const patients = await getPatients();
   const options = patients.map((patient) => (
     <div>
-      <input type="checkbox" name="patients" value={patient.clientId} />
-      <label htmlFor={patient.clientId}>
-        <Link href={`/patients/${patient.clientId}`}>{patient.clientId}</Link>
+      <input type="checkbox" name="patients" value={patient.client_id} />
+      <label htmlFor={patient.client_id}>
+        <Link href={`/patients/${patient.client_id}`}>{patient.client_id}</Link>
       </label>
     </div>
   ));

@@ -13,7 +13,7 @@ datasource db {
 model Patient {
   id           Int          @id @default(autoincrement())
   createdAt    DateTime     @default(now())
-  clientId     String       @unique
+  client_id    String       @unique
   birthdate    DateTime
   gender       Int
   ethnicity    Int
@@ -23,9 +23,9 @@ model Patient {
 model TestResult {
   id                   Int      @id @default(autoincrement())
   createdAt            DateTime @default(now())
-  patient              Patient  @relation(fields: [clientId], references: [clientId])
+  patient              Patient  @relation(fields: [client_id], references: [client_id])
   date_testing         DateTime
-  clientId             String
+  client_id            String
   creatine             Float
   creatine_unit        String
   chloride             Float

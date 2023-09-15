@@ -1,13 +1,13 @@
 -- CreateTable
-CREATE TABLE "Client" (
+CREATE TABLE "Patient" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "clientId" TEXT NOT NULL,
+    "client_id" TEXT NOT NULL,
     "birthdate" TIMESTAMP(3) NOT NULL,
     "gender" INTEGER NOT NULL,
     "ethnicity" INTEGER NOT NULL,
 
-    CONSTRAINT "Client_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Patient_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -15,9 +15,9 @@ CREATE TABLE "TestResult" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "date_testing" TIMESTAMP(3) NOT NULL,
-    "clientId" TEXT NOT NULL,
+    "client_id" TEXT NOT NULL,
     "creatine" DOUBLE PRECISION NOT NULL,
-    "creattine_unit" TEXT NOT NULL,
+    "creatine_unit" TEXT NOT NULL,
     "chloride" DOUBLE PRECISION NOT NULL,
     "chloride_unit" TEXT NOT NULL,
     "fasting_glucose" DOUBLE PRECISION NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE "TestResult" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Client_clientId_key" ON "Client"("clientId");
+CREATE UNIQUE INDEX "Patient_client_id_key" ON "Patient"("client_id");
 
 -- AddForeignKey
-ALTER TABLE "TestResult" ADD CONSTRAINT "TestResult_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("clientId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "TestResult" ADD CONSTRAINT "TestResult_client_id_fkey" FOREIGN KEY ("client_id") REFERENCES "Patient"("client_id") ON DELETE RESTRICT ON UPDATE CASCADE;
