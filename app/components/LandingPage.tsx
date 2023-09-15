@@ -12,7 +12,7 @@ async function getPatients() {
 export default async function LandingPage() {
   const patients = await getPatients();
   const options = patients.map((patient) => (
-    <div>
+    <div key={patient.client_id}>
       <input type="checkbox" name="patients" value={patient.client_id} />
       <label htmlFor={patient.client_id}>
         <Link href={`/patients/${patient.client_id}`}>{patient.client_id}</Link>

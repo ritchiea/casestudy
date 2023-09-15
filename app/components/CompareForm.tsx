@@ -7,7 +7,9 @@ interface CompareFormProps {
 
 const CompareForm: FC<CompareFormProps> = ({ options }) => {
   const biomarkers = BIOMARKERS.map((marker) => (
-    <option value={marker}>{marker}</option>
+    <option value={marker} key={marker}>
+      {marker}
+    </option>
   ));
   return (
     <div className="form-container">
