@@ -12,7 +12,7 @@ datasource db {
 
 model Patient {
   id           Int          @id @default(autoincrement())
-  createdAt    DateTime     @default(now())
+  created_at   DateTime     @default(now())
   client_id    String       @unique
   birthdate    DateTime
   gender       Int
@@ -22,7 +22,7 @@ model Patient {
 
 model TestResult {
   id                   Int      @id @default(autoincrement())
-  createdAt            DateTime @default(now())
+  created_at           DateTime @default(now())
   patient              Patient  @relation(fields: [client_id], references: [client_id])
   date_testing         DateTime
   client_id            String

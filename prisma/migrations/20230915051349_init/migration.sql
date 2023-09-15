@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE "Patient" (
     "id" SERIAL NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "client_id" TEXT NOT NULL,
     "birthdate" TIMESTAMP(3) NOT NULL,
     "gender" INTEGER NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE "Patient" (
 -- CreateTable
 CREATE TABLE "TestResult" (
     "id" SERIAL NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "date_testing" TIMESTAMP(3) NOT NULL,
     "client_id" TEXT NOT NULL,
     "creatine" DOUBLE PRECISION NOT NULL,
