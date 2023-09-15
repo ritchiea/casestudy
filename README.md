@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Setup
 
-The project can be set up to demo and run the test suite with a few simple commands. Docker is required to run a postgres instance for data persistence.
+The project can be set up to demo with a few simple commands. Docker is required to run a postgres instance for data persistence.
 
 Requires node 20.5.0
 
